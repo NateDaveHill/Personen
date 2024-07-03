@@ -12,7 +12,6 @@ namespace Personen
         static void Main(string[] args)
         {
             searchPerson(@"C:\Users\natha\OneDrive\Desktop\00_Temp\03_Projects\Personen\Personen\input.txt", "Andre");
-
         }
 
         public static void searchPerson(string datafile, string q)
@@ -27,7 +26,7 @@ namespace Personen
             string[] textFile =
                 System.IO.File.ReadAllLines(datafile);
 
-            string[] itemsPerLine = new string[] {};
+            string[] itemsPerLine = new string[] { };
 
             for (int i = 0; i < textFile.Length; i++)
             {
@@ -35,6 +34,66 @@ namespace Personen
                 tempAvgWeight += decimal.Parse(itemsPerLine[1], CultureInfo.InvariantCulture);
                 avgWeight = tempAvgWeight / textFile.Length;
             }
+
+            for (int i = 0; i < textFile.Length; i++)
+            {
+                var currentLine = textFile[i];
+                var currentLineSplit = textFile[i].Split(' ');
+
+                for (int j = 0; j < textFile.Length; j++)
+                {
+                    
+                }
+
+                ageCurrentPerson = Convert.ToInt32(itemsPerLine[2]);
+
+                //Testing
+
+                if (ageCurrentPerson > agePreviousPerson)
+                {
+                    Console.WriteLine($"{textFile[i]} is older than the previous person.");
+                    agePreviousPerson = ageCurrentPerson;
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
