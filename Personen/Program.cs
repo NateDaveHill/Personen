@@ -43,23 +43,19 @@ namespace Personen
                 var currentLineSplit = textFile[i].Split(' ');
                 ageCurrentPerson = Convert.ToInt32(itemsPerLine[2]);
 
-                for (int j = 0; j < textFile.Length; j++)
-                {
+                //for (int j = 0; j < textFile.Length; j++)
+                //{
                     
-                    if (ageCurrentPerson < agePreviousPerson)
-                    {
-                        Console.WriteLine($"{textFile[i]} is older than the previous person.");
-                        agePreviousPerson = ageCurrentPerson;
-                        range --;
-                    }
+                //    if (ageCurrentPerson > agePreviousPerson)
+                //    {
+                //        //Console.WriteLine($"{textFile[i]} is older than the previous person.");
+                //        agePreviousPerson = ageCurrentPerson;
+                //        range ++;
+                //    }
 
-                }
+                //    //speicher den altersrang ab;
 
-
-                //Testing
-
-                
-
+                //}
             }
 
 
