@@ -76,15 +76,15 @@ namespace Personen
 
                 if (person.Name.Contains(q) && person.Gender == "w")
                 {
-                    ageRangeMale = sortedPersonDataFemale.Count(p => p.Age > person.Age) + 1;
+                    ageRangeFemale = sortedPersonDataFemale.Count(p => p.Age > person.Age) + 1;
 
                     if (person.Weight > avgWeight)
                     {
-                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} + {ageRangeMale}");
+                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} + {ageRangeFemale}");
                     }
                     else
                     {
-                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} - {ageRangeMale}");
+                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} - {ageRangeFemale}");
                     }
                 }
             }
