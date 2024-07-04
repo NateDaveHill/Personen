@@ -19,6 +19,7 @@ namespace Personen
         {
             List<Data> inputData = new List<Data>();
             decimal avgWeight = Decimal.Zero;
+            int ageRange = 0;
 
             string[] textFile =
                 System.IO.File.ReadAllLines(datafile);
@@ -37,19 +38,36 @@ namespace Personen
                 });
             }
 
+            
+
             foreach (var person in inputData)
             {
                 avgWeight += person.Weight / inputData.Count;
-
             }
 
-            var sortedPersonData = inputData.OrderByDescending(x => x.Age).ThenBy(x => x.Gender);
+            var sortedPersonData = inputData.OrderByDescending(x => x.Age).ThenBy(x => x.Gender).ToList();
+
+
             foreach (var person in sortedPersonData)
             {
-                Console.WriteLine(person.Age + person.Gender);
+
+                if (person.Name.Contains(q))
+                {
+                    ageRange = sortedPersonData.Count(p => p.Age > person.Age) + 1;
+
+
+                    if (person.Weight > avgWeight)
+                    {
+                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} + {ageRange}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} - {ageRange}");
+                    }
+                }
+
+                
             }
-
-
         }
     }
 }
