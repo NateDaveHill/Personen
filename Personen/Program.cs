@@ -19,7 +19,8 @@ namespace Personen
         {
             List<Data> inputData = new List<Data>();
             decimal avgWeight = Decimal.Zero;
-            int ageRange = 0;
+            int ageRangeMale = 0;
+            int ageRangeFemale = 0;
 
             string[] textFile =
                 System.IO.File.ReadAllLines(datafile);
@@ -38,36 +39,48 @@ namespace Personen
                 });
             }
 
-            
-
             foreach (var person in inputData)
             {
                 avgWeight += person.Weight / inputData.Count;
             }
 
-            var sortedPersonData = inputData.OrderByDescending(x => x.Age).ThenBy(x => x.Gender).ToList();
+            var sortedPersonDataMale = inputData.OrderBy(x => x.Age).Where(x => x.Gender == "m").ToList();
+            var sortedPersonDataFemale = inputData.OrderBy(x => x.Age).Where(x => x.Gender == "w").ToList();
 
+            var combinedSortedList = sortedPersonDataMale.Concat(sortedPersonDataFemale).ToList();
 
-            foreach (var person in sortedPersonData)
+            foreach (var person in combinedSortedList)
             {
 
-                if (person.Name.Contains(q))
+                if (person.Name.Contains(q) && person.Gender == "m")
                 {
-                    ageRange = sortedPersonData.Count(p => p.Age > person.Age) + 1;
-
+                    ageRangeMale = sortedPersonDataMale.Count(p => p.Age > person.Age) + 1;
 
                     if (person.Weight > avgWeight)
                     {
-                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} + {ageRange}");
+                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} + {ageRangeMale}");
                     }
                     else
                     {
-                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} - {ageRange}");
+                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} - {ageRangeMale}");
                     }
                 }
 
-                
+                if (person.Name.Contains(q) && person.Gender == "w")
+                {
+                    ageRangeMale = sortedPersonDataFemale.Count(p => p.Age > person.Age) + 1;
+
+                    if (person.Weight > avgWeight)
+                    {
+                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} + {ageRangeMale}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{person.Name} {person.Age} {person.Gender} - {ageRangeMale}");
+                    }
+                }
             }
         }
     }
 }
+
