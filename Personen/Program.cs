@@ -29,6 +29,7 @@ namespace Personen
             foreach (var line in textFile)
             {
                 string[] textSplit = line.Split(" ");
+
                 try
                 {
                     inputData.Add(new Data
