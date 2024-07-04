@@ -29,14 +29,21 @@ namespace Personen
             foreach (var line in textFile)
             {
                 string[] textSplit = line.Split(" ");
-
-                inputData.Add(new Data
+                try
                 {
-                    Name = textSplit[0],
-                    Weight = Decimal.Parse(textSplit[1], CultureInfo.InvariantCulture),
-                    Age = Convert.ToInt32(textSplit[2]),
-                    Gender = textSplit[3]
-                });
+                    inputData.Add(new Data
+                    {
+                        Name = textSplit[0],
+                        Weight = Decimal.Parse(textSplit[1], CultureInfo.InvariantCulture),
+                        Age = Convert.ToInt32(textSplit[2]),
+                        Gender = textSplit[3]
+                    });
+                }
+                catch (Exception e)
+                {
+                    continue;
+                }
+                
             }
 
             foreach (var person in inputData)
